@@ -16,13 +16,14 @@ public:
     explicit myWidget(QWidget *parent = 0);
 
 signals:
-
+    void counterRighed();
 private slots:
     void setButtonClicked(bool checked);
 private:
     QPushButton *button;
     QProgressBar *pbar;
     QSlider *slider;
+    int counter;
 
 };
 

@@ -11,6 +11,7 @@ myWidget::myWidget(QWidget *parent)
 //      pbar(new QProgressBar(this)),
 //      slider(new QSlider(this))
 {
+    counter = 0;
     setFixedSize(300, 400);
     button->setGeometry(10,10,180,40);
     button->setCheckable(true);
@@ -24,6 +25,7 @@ myWidget::myWidget(QWidget *parent)
 //    slider->setValue(0);
 //    QObject::connect(slider, SIGNAL(valueChanged(int)), pbar, SLOT(setValue(int)));
     connect(button, SIGNAL(clicked(bool)), this, SLOT(setButtonClicked(bool)));
+    connect(this, SIGNAL(counterRighed()), QApplication::instance(), SLOT(quit()));
 }
 
 void myWidget::setButtonClicked(bool checked)
@@ -32,5 +34,9 @@ void myWidget::setButtonClicked(bool checked)
         button->setText("CLICKED");
     else
         button->setText("not YET");
-
+    counter++;
+    if(counter == 10)
+        emit counterRighed();
 }
+
+//void myWidget::counterRighed();
